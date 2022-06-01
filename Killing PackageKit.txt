@@ -1,0 +1,2 @@
+Option 1 : systemctl stop packagekit.service
+Option 2 : killall -q packagekit
