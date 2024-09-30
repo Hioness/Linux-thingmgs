@@ -8,8 +8,7 @@ read -p "Do you want to update Open-WebUI? (y/N): " update_openwebui
 
 # Run the standard update commands
 # distrobox upgrade --all
-# sudo apt update
-# sudo apt upgrade -y
+# sudo apt update && sudo apt upgrade -y
 # snap refresh -y
 # sudo zypper update -y
 # distrobox-upgrade --all
