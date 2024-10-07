@@ -28,5 +28,5 @@ if [[ $update_openwebui =~ ^[Yy]$ ]]; then
         -v /var/run/docker.sock:/var/run/docker.sock \
         containrrr/watchtower \
         --run-once \
-        openwebui
+        open-webui
 fi
