@@ -1,11 +1,10 @@
 #!/bin/bash
 
-sudo zypper dist-upgrade
-
 sudo zypper ref
 
-sudo zypper update
+sudo zypper dist-upgrade
 
+# Note: The following Packman repository URL is for openSUSE Tumbleweed.
 sudo zypper ar -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
 
 sudo zypper install flatpak
