@@ -14,6 +14,10 @@ flatpak update -y
 if [[ $update_ollama =~ ^[Yy]$ ]]; then
     echo "Updating Ollama..."
     curl -fsSL https://ollama.com/install.sh | sh
+
+    echo "Removing Ollama CUDA files..."
+    sudo rm -rf /usr/local/lib/ollama/cuda_v12 \
+            /usr/local/lib/ollama/cuda_v13
 fi
 
 # Update Open WebUI if user agreed
@@ -21,3 +25,7 @@ if [[ $update_openwebui =~ ^[Yy]$ ]]; then
     echo "Updating Open WebUI..."
     docker run --rm         -v /var/run/docker.sock:/var/run/docker.sock         containrrr/watchtower         --run-once         open-webui
 fi
+
+# Prune old docker images (like old Open-WebuiVersion)
+echo "Pruning old Docker images..."
+docker system prune -f
