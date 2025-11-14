@@ -11,3 +11,4 @@ The following will be descriptions of what all the files in this repo are made t
 - update-opensuse.sh - Updates system packages (Zypper) and Flatpaks on openSUSE. Optionally updates Ollama and Open WebUI.
 - update-debian.sh - Updates system packages (APT) and Flatpaks on Debian/Ubuntu. Optionally updates Ollama and Open WebUI.
 - killing-packagekit.txt - Contains commands to stop or kill the PackageKit service, which can be useful if it interferes with manual package management operations.
+- alacritty-config - Configuration file for the Alacritty terminal emulator. Removes window decorations, adds transparency (97% opacity), sets a custom window size (97x26 characters), applies Nord color scheme with a dark background, and configures an underlined blinking cursor with 14pt Monospace font.
