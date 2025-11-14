@@ -1,0 +1,54 @@
+# This configuration removes the window title bar and adds transparency.
+[window]
+decorations = "none"
+opacity = 0.97
+
+# Sets the startup size of the window in character cells.
+# Adjust these values to your preferred default size.
+dimensions = { columns = 97, lines = 26 }
+
+# Sets padding around the terminal content.
+[window.padding]
+x = 15
+y = 15
+
+# Font configuration updated to size 14.
+[font]
+size = 14.0
+
+[font.normal]
+family = "Monospace"
+style = "Regular"
+
+# Corrected cursor customization.
+[cursor.style]
+# The `shape` can be 'Block', 'Beam', or 'Underline'.
+shape = "Underline"
+
+# `blinking` can be 'On', 'Off', 'Always', etc.
+blinking = "On"
+
+# Colors (Nord)
+[colors.primary]
+background = "#282c34"
+foreground = "#D8DEE9"
+
+[colors.normal]
+black   = "#3B4252"
+red     = "#BF616A"
+green   = "#A3BE8C"
+yellow  = "#EBCB8B"
+blue    = "#81A1C1"
+magenta = "#B48EAD"
+cyan    = "#88C0D0"
+white   = "#E5E9F0"
+
+[colors.bright]
+black   = "#4C566A"
+red     = "#BF616A"
+green   = "#A3BE8C"
+yellow  = "#EBCB8B"
+blue    = "#81A1C1"
+magenta = "#B48EAD"
+cyan    = "#8FBCBB"
+white   = "#ECEFF4"
