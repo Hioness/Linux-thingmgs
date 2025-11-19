@@ -31,19 +31,21 @@ if [[ $update_openwebui =~ ^[Yy]$ ]]; then
     docker run --rm         -v /var/run/docker.sock:/var/run/docker.sock         containrrr/watchtower         --run-once         open-webui
 fi
 
-# Uncomment the following section to enable Qwen Code updates
-# if [[ $update_qwen =~ ^[Yy]$ ]]; then
-#     echo "Updating Qwen Code..."
-#     sudo npm install -g @qwen-code/qwen-code@latest
-#     echo "Qwen Code update complete."
-# fi
+# The following section handles Qwen Code updates.
+# To enable, uncomment the corresponding 'read' prompt at the beginning of the script.
+if [[ $update_qwen =~ ^[Yy]$ ]]; then
+    echo "Updating Qwen Code..."
+    sudo npm install -g @qwen-code/qwen-code@latest
+    echo "Qwen Code update complete."
+fi
 
-# Uncomment the following section to enable Gemini CLI updates
-# if [[ $update_gemini =~ ^[Yy]$ ]]; then
-#     echo "Updating Gemini CLI..."
-#     sudo npm install -g @google/gemini-cli@latest
-#     echo "Gemini CLI update complete."
-# fi
+# The following section handles Gemini CLI updates.
+# To enable, uncomment the corresponding 'read' prompt at the beginning of the script.
+if [[ $update_gemini =~ ^[Yy]$ ]]; then
+    echo "Updating Gemini CLI..."
+    sudo npm install -g @google/gemini-cli@latest
+    echo "Gemini CLI update complete."
+fi
 
 # Prune old docker images (like old Open-WebuiVersion)
 echo "Pruning old Docker images..."
