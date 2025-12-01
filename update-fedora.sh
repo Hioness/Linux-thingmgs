@@ -1,51 +1,34 @@
 #!/bin/bash
 
+# Source common functions
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/common.sh"
+
 # Prompt user for Ollama update
-read -p "Do you want to update Ollama? (y/N): " update_ollama
+read -p "Do you want to update Ollama? (y/N): " ollama_response
 
 # Prompt user for Open WebUI update
-read -p "Do you want to update Open-WebUI? (y/N): " update_openwebui
+read -p "Do you want to update Open-WebUI? (y/N): " webui_response
 
 # Uncomment the following lines to enable npm package updates
-# read -p "Do you want to update Qwen Code? (y/N): " update_qwen
-# read -p "Do you want to update Gemini CLI? (y/N): " update_gemini
+# read -p "Do you want to update Qwen Code? (y/N): " qwen_response
+# read -p "Do you want to update Gemini CLI? (y/N): " gemini_response
 
 # Run the standard update commands
-sudo dnf update -y
-flatpak update -y
+echo "Running system updates..."
+run_safe "DNF update" sudo dnf update -y
+run_safe "Flatpak update" flatpak update -y
 
-# Update Ollama if user agreed
-if [[ $update_ollama =~ ^[Yy]$ ]]; then
-    echo "Updating Ollama..."
-    curl -fsSL https://ollama.com/install.sh | sh
+# Update optional tools
+update_ollama "$ollama_response"
+update_openwebui "$webui_response"
 
-    echo "Removing Ollama CUDA files..."
-    sudo rm -rf /usr/local/lib/ollama/cuda_v12 \
-            /usr/local/lib/ollama/cuda_v13
-fi
+# Uncomment to enable npm package updates
+# update_qwen "$qwen_response"
+# update_gemini "$gemini_response"
 
-# Update Open WebUI if user agreed
-if [[ $update_openwebui =~ ^[Yy]$ ]]; then
-    echo "Updating Open WebUI..."
-    docker run --rm         -v /var/run/docker.sock:/var/run/docker.sock         containrrr/watchtower         --run-once         open-webui
-fi
+# Prune Docker
+prune_docker
 
-# The following section handles Qwen Code updates.
-# To enable, uncomment the corresponding 'read' prompt at the beginning of the script.
-if [[ $update_qwen =~ ^[Yy]$ ]]; then
-    echo "Updating Qwen Code..."
-    sudo npm install -g @qwen-code/qwen-code@latest
-    echo "Qwen Code update complete."
-fi
-
-# The following section handles Gemini CLI updates.
-# To enable, uncomment the corresponding 'read' prompt at the beginning of the script.
-if [[ $update_gemini =~ ^[Yy]$ ]]; then
-    echo "Updating Gemini CLI..."
-    sudo npm install -g @google/gemini-cli@latest
-    echo "Gemini CLI update complete."
-fi
-
-# Prune old docker images (like old Open-WebuiVersion)
-echo "Pruning old Docker images..."
-docker system prune -f
+# Show summary
+show_summary
