@@ -23,9 +23,9 @@ run_safe "Flatpak update" flatpak update -y
 update_ollama "$ollama_response"
 update_openwebui "$webui_response"
 
-# Uncomment to enable npm package updates
-# update_qwen "$qwen_response"
-# update_gemini "$gemini_response"
+# Optional npm package updates (enable by uncommenting 'read' prompts above)
+update_qwen "$qwen_response"
+update_gemini "$gemini_response"
 
 # Prune Docker
 prune_docker
