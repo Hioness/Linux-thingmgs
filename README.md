@@ -12,8 +12,7 @@ Before using these scripts, ensure you have the following installed:
 
 **Optional (depending on which features you want to use):**
 - `curl` - Required for Ollama updates
-- `docker` - Required for Open WebUI updates
-- `npm` - Required for Qwen Code and Gemini CLI updates (if enabled)
+- `docker` - For Docker image pruning
 
 ## Usage
 
@@ -34,7 +33,7 @@ Before using these scripts, ensure you have the following installed:
    ./update-opensuse.sh
    ```
 
-3. **Answer prompts** for optional updates (Ollama, Open WebUI, etc.)
+3. **Answer prompts** for optional updates (Ollama)
 
 4. **Review the summary** at the end to see what succeeded or failed
 
@@ -45,16 +44,9 @@ Before using these scripts, ensure you have the following installed:
 
 - **common.sh** - Shared library containing error handling logic and common update functions. All update scripts source this file to provide non-blocking error reporting and reduce code duplication.
 - **SUSE.sh** - This script automates initial openSUSE setup. It refreshes repositories, performs a distribution upgrade, adds the Packman repository (Tumbleweed URL), installs Flatpak, and adds the Flathub remote.
-- **update-fedora.sh** - Updates system packages (DNF) and Flatpaks on Fedora. Optionally updates Ollama and Open WebUI. Includes commented-out sections for updating Qwen Code and Gemini CLI via npm (uncomment to enable). Uses `common.sh` for error handling.
-- **update-opensuse.sh** - Updates system packages (Zypper) and Flatpaks on openSUSE. Optionally updates Ollama and Open WebUI. Includes commented-out sections for updating Qwen Code and Gemini CLI via npm (uncomment to enable). Uses `common.sh` for error handling.
-- **update-debian.sh** - Updates system packages (APT) and Flatpaks on Debian/Ubuntu. Optionally updates Ollama and Open WebUI. Includes commented-out sections for updating Qwen Code and Gemini CLI via npm (uncomment to enable). Uses `common.sh` for error handling.
+- **update-fedora.sh** - Updates system packages (DNF) and Flatpaks on Fedora. Optionally updates Ollama. Uses `common.sh` for error handling.
+- **update-opensuse.sh** - Updates system packages (Zypper) and Flatpaks on openSUSE. Optionally updates Ollama. Uses `common.sh` for error handling.
+- **update-debian.sh** - Updates system packages (APT) and Flatpaks on Debian/Ubuntu. Optionally updates Ollama. Uses `common.sh` for error handling.
 - **killing-packagekit.txt** - Contains commands to stop or kill the PackageKit service, which can be useful if it interferes with manual package management operations.
 - **alacritty-config** - Configuration file for the Alacritty terminal emulator. Removes window decorations, adds transparency (97% opacity), sets a custom window size (97x26 characters), applies Nord color scheme with a dark background, and configures an underlined blinking cursor with 14pt Monospace font.
 
-## Optional npm Package Updates
-
-The update scripts include optional sections (currently commented out) for updating:
-- **Qwen Code** (`@qwen-code/qwen-code`) - AI-powered code assistant
-- **Gemini CLI** (`@google/gemini-cli`) - Google's Gemini API command-line interface
-
-To enable these updates on a specific machine, uncomment the relevant sections in your update script. npm will automatically check if updates are needed before installing.

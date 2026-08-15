@@ -73,53 +73,18 @@ check_optional_tool() {
 }
 
 # Update Ollama
-update_ollama() {
-    if [[ $1 =~ ^[Yy]$ ]]; then
-        echo "Updating Ollama..."
-        if check_optional_tool "curl" "Ollama"; then
-            # The pipe | sh makes it tricky for run_safe to capture the exit code of the whole pipeline directly
-            # without a subshell or wrapper, but for simplicity we can wrap the command string.
-            # However, run_safe expects a command and args.
-            # Let's use a small helper or just run it directly inside run_safe if it was a simple command.
-            # Since it's a pipeline, we can wrap it in a bash -c
-            
-            run_safe "Ollama update" bash -c "curl -fsSL https://ollama.com/install.sh | sh"
-            
-            echo "Removing Ollama CUDA files..."
-            run_safe "Ollama CUDA cleanup" sudo rm -rf /usr/local/lib/ollama/cuda_v12 /usr/local/lib/ollama/cuda_v13
-        fi
-    fi
-}
-
-# Update Open WebUI
-update_openwebui() {
-    if [[ $1 =~ ^[Yy]$ ]]; then
-        echo "Updating Open WebUI..."
-        if check_optional_tool "docker" "Open WebUI"; then
-            run_safe "Open WebUI update" docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once open-webui
-        fi
-    fi
-}
-
-# Update Qwen Code
-update_qwen() {
-    if [[ $1 =~ ^[Yy]$ ]]; then
-        echo "Updating Qwen Code..."
-        if check_optional_tool "npm" "npm packages"; then
-            run_safe "Qwen Code update" sudo npm install -g @qwen-code/qwen-code@latest
-        fi
-    fi
-}
-
-# Update Gemini CLI
-update_gemini() {
-    if [[ $1 =~ ^[Yy]$ ]]; then
-        echo "Updating Gemini CLI..."
-        if check_optional_tool "npm" "npm packages"; then
-            run_safe "Gemini CLI update" sudo npm install -g @google/gemini-cli@latest
-        fi
-    fi
-}
+# Ollama removed from this machine (2025-07)
+# update_ollama() {
+#     if [[ $1 =~ ^[Yy]$ ]]; then
+#         echo "Updating Ollama..."
+#         if check_optional_tool "curl" "Ollama"; then
+#             run_safe "Ollama update" bash -c "curl -fsSL https://ollama.com/install.sh | sh"
+# 
+#             echo "Removing Ollama CUDA files..."
+#             run_safe "Ollama CUDA cleanup" sudo rm -rf /usr/local/lib/ollama/cuda_v12 /usr/local/lib/ollama/cuda_v13
+#         fi
+#     fi
+# }
 
 # Prune Docker images
 prune_docker() {
